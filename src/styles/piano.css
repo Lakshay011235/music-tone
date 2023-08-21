@@ -1,0 +1,56 @@
+.piano {
+  text-align: center;
+  margin: 50px auto;
+}
+
+.piano-keys {
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+  min-width: 3000px;
+  overflow: scroll;
+}
+
+.piano-key {
+  min-width: 2rem;
+  height: 18rem;
+  box-shadow: inset 0px 0px 3px#000;
+  background-color: #fff;
+  display: flex;
+  justify-content: flex-end;
+  box-sizing: border-box;
+  z-index: 1;
+  transition: all 0.2s ease-in-out;
+  align-items: center;
+  writing-mode: vertical-lr;
+  text-orientation: upright;
+  color: #007bff;
+  cursor: pointer;
+}
+
+.piano-key.black {
+  background-color: #000;
+  z-index: 2;
+}
+
+.piano-key:active {
+  background-color: red;
+}
+
+h1 {
+  font-size: 30px;
+}
+
+button {
+  padding: 15px 30px;
+  font-size: 18px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}

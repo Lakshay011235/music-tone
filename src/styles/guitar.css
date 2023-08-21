@@ -1,0 +1,16 @@
+/* div {border: yellow solid 2px;box-sizing: border-box;} */
+
+
+.initialize-synth {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: red;
+    width: 20rem;
+    height: 15rem;
+    font-size: xx-large;
+    color: aliceblue;
+    font-weight: 900;
+    border-radius: 4rem;
+}
+
