@@ -22,34 +22,6 @@ const GuitarTable = ({synth}) => {
     }
   };
 
-
-  /**
-   * Returns the Note corresponding to the string and fret number
-  *  @param {Number} stringIndex - E4 => 0, B3=>1, G3=>2, D3=>3, A2=>4, E2=>5
-  *  @param {Number} fretIndex - default => 0 (open note), 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 
-  *
-  *  @returns {String|Error} Note - eg."E4" or "D#3" | Error = Invalid note Index value
-  */
-  const calcNote = (stringIndex, fretIndex) => {
-    try {
-      if (stringIndex >= 0 && stringIndex <=5) {
-        if (fretIndex >= 0 && fretIndex <= 12) {
-          let noteIndex = stringIndex*13 + fretIndex;
-          return strings[noteIndex];
-        }
-        else {
-          throw new Error("Invalid Fret Index");
-        }
-      }
-      else {
-        throw new Error("Invalid String Index");
-      }
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
-  calcNote()
   return (
     <div className="guitar-table">
       {strings.map((note, index) => (

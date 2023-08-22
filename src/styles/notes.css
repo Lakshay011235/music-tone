@@ -1,0 +1,30 @@
+.notes {
+    display: flex;
+    flex-direction: row;
+    background-color: antiquewhite;
+}
+.noteColumn {
+    display: flex;
+    flex-direction: column;
+    outline: 1px solid red;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    /* display: none; <- Crashes Chrome on hover */
+    -webkit-appearance: none;
+    margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+}
+.note {
+    all: unset;
+    width: 2.4rem;
+    height: 2rem;
+    font-size: x-large;
+    font-family: consolas;
+    border: none;
+    cursor: grab;
+    align-items: center;
+    text-align: center;
+}
+.note:hover {
+    outline: 1px solid teal;
+}
