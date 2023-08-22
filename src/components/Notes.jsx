@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import '../styles/notes.css'
 
 class NoteColumn {
@@ -9,13 +9,13 @@ class NoteColumn {
 
 function Notes() {
   const [notes, setNotes] = useState([new NoteColumn('-', '-', '-', '-', '-', '-')]);
-  const [writable, setWritable] = useState(false);
+  const [writable, setWritable] = useState(0);
   const addNoteColumn = () => {
     setNotes([...notes, new NoteColumn('-', '-', '-', '-', '-', '-')]);
   };
   const updateNoteValue = (columnIndex, rowIndex, newValue) => {
     const newNotes = [...notes];
-    if (parseInt(newValue) >= 0 && parseInt(newValue) <= 12)
+    if ((parseInt(newValue) >= 0 && parseInt(newValue) <= 12) || newValue === '-')
       newNotes[columnIndex].values[rowIndex] = newValue;
     setNotes(newNotes);
   };
@@ -40,11 +40,26 @@ function Notes() {
     ));
   };
 
-  useEffect(() => {
-    let asdf = JSON.stringify(notes);
-    console.log(asdf);
-    console.log(JSON.parse(asdf));
-  });
+  const saveNotesToAPI = () => {
+    const notesData = notes.map((noteColumn) => noteColumn.values);
+  
+    fetch('http://localhost:3001/api/notes', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ values: notesData }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        alert("Sent")
+        console.log(data.message);
+      })
+      .catch((error) => {
+        console.error('Error saving notes:', error);
+      });
+  };
+
   return (
     <div>
       <div className="notes">
@@ -61,12 +76,17 @@ function Notes() {
                   updateNoteValue(columnIndex, rowIndex, parseInt(e.target.value))
                 }
                 onClick={() => {
-                  updateNoteValue(columnIndex, rowIndex, 0);
-                  setWritable(true);
+                  updateNoteValue(columnIndex, rowIndex, writable);s
+                  setWritable((writable + 1));
+                }}
+                onMouseLeave={() => {setWritable(0);}}
+                onContextMenu={(e) => {
+                  e.preventDefault();
+                  updateNoteValue(columnIndex, rowIndex, '-');
                 }}
                 // onMouseOver={() => console.log(notes[columnIndex].values[rowIndex])}
                 onKeyDown={(e) => {
-                  if (writable) updateNoteValue(columnIndex, rowIndex, '');
+                  if (writable > 0) updateNoteValue(columnIndex, rowIndex, '');
                   handleKeyDown(e);
                   setWritable(false);
                 }}
@@ -77,6 +97,7 @@ function Notes() {
       </div>
       <div>
         <button type="button" onClick={addNoteColumn}>Add Column</button>
+        <button type="button" onClick={saveNotesToAPI}>Save</button>
       </div>
       <div className="notes">{renderNotes()}</div>
     </div>

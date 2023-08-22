@@ -1,13 +1,15 @@
 import React, { useState } from 'react';
 import * as Tone from 'tone';
 import '../styles/piano.css';
+import { Link } from 'react-router-dom';
+
 
 const Piano = () => {
   const [synth, setSynth] = useState(null);
 
   const initializeSynth = () => {
     const newSynth = new Tone.Synth().toDestination();
-    setSynth(newSynth);
+    setSynth(newSynth); 
   };
 
   const playNote = (note) => {
@@ -45,6 +47,7 @@ const Piano = () => {
           </div>
         ))}
       </div>
+      <Link to={'/joyboy'}>TO JOYBOY</Link>
     </div>
   );
 };

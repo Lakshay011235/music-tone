@@ -1,4 +1,6 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+
 
 function Joyboy() {
 
@@ -26,7 +28,7 @@ function Joyboy() {
           let noteIndex = stringIndex*13 + fretIndex;
           return strings[noteIndex];
         }
-        else if (fretIndex == -1) {
+        else if (fretIndex === -1) {
           return null
         }
         else {
@@ -59,6 +61,7 @@ function Joyboy() {
       </div>
       
       <div>{noteIndex}</div>
+      <Link to={'/piano'}>TO PIANO</Link>
     </div>
   )
 }
