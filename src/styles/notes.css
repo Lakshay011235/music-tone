@@ -1,6 +1,7 @@
 .notes {
     display: flex;
     flex-direction: row;
+    overflow-x: scroll;
     background-color: antiquewhite;
 }
 .noteColumn {

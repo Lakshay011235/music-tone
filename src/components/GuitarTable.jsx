@@ -15,7 +15,7 @@ const GuitarTable = ({synth}) => {
 
   const handleClick = (note) => {
     if (synth !== null){
-      synth.triggerAttackRelease(note, '8n');
+      synth.triggerAttackRelease(note, "8n");
     }
     else {
       alert("Synth is not available");

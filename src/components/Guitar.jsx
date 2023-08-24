@@ -9,7 +9,15 @@ function Guitar() {
 
   const initializeSynth = () => {
     if (!synthActive){
-      const newSynth = new Tone.Synth().toDestination();
+      const newSynth = new Tone.Synth();
+      // const env = new Tone.Envelope({
+      //   attack: 0.05,   
+      //   decay: 0.1,     
+      //   sustain: 0.3, 
+      //   release: 1.5,
+      // });
+      // env.connect(newSynth.volume);
+      newSynth.toDestination();
       setSynth(newSynth);
       // alert("Synth is now active");
       console.log("Synth is now active");

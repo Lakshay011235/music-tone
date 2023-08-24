@@ -22,19 +22,18 @@ const db = new sqlite3.Database('notes.db');
 db.run(`
   CREATE TABLE IF NOT EXISTS notes (
     id INTEGER PRIMARY KEY,
+    songName TEXT,
     data TEXT
   )
 `);
 
 // Route to save notes
 app.post('/api/notes', async (req, res) => {
-  console.log("--------------------------------");
-  const values = JSON.stringify(req.body.values);
-  console.log("--------------------------------");
-
+  const notes = req.body.notes;
+  const songName = req.body.songName;
   db.run(
-    'INSERT INTO notes (data) VALUES (?)',
-    [values],
+    'INSERT INTO notes (songName, data) VALUES (?, ?)',
+    [songName, JSON.stringify(notes)],
     function (err) {
       if (err) {
         console.error(err.message);
