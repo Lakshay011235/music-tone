@@ -1,3 +1,8 @@
+# Music Tone
+---
+## **This project is a practice repository for learning [Tone.js](https://tonejs.github.io/)**
+
+---
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
